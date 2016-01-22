@@ -45,9 +45,11 @@ TEST (string_duplicate, ZeroCount) {
 
 TEST (string_duplicate, ValidStringDuplicate) {
 	const char *string = "matt";
-	char* res = string_duplicate(string,5);
-	EXPECT_EQ(0, memcmp(string,res, 5 * sizeof(char)));
-	free(res);
+	char* res = string_duplicate(string,5);	
+	EXPECT_NE(res,(char*)NULL);
+	if (res) {
+	  ASSERT_EQ(0, memcmp(string,res, 5 * sizeof(char)));
+	}
 }
 
 
@@ -190,9 +192,9 @@ TEST (string_tokenize, TokensParsed) {
 
 	EXPECT_EQ(3,string_tokenize(str,delims,length,tokens,10,3));
 
-	EXPECT_EQ(0,strncmp("matt",tokens[0],4));
-	EXPECT_EQ(0,strncmp("is",tokens[1],2));
-	EXPECT_EQ(0,strncmp("cool",tokens[2],4));
+	ASSERT_EQ(0,strncmp("matt",tokens[0],4));
+	ASSERT_EQ(0,strncmp("is",tokens[1],2));
+	ASSERT_EQ(0,strncmp("cool",tokens[2],4));
 
 	delete[] tokens[0];
 	delete[] tokens[1];

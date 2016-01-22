@@ -198,7 +198,7 @@ TEST (file_stat, CorrectFilename) {
 	struct stat file_stats;
 	bool res = file_stat(query_filename,&file_stats);
 	EXPECT_EQ(res,true);
-	EXPECT_EQ(41,file_stats.st_size);
+	ASSERT_EQ(41,file_stats.st_size);
 	
 }
 
@@ -247,7 +247,7 @@ TEST (endianess_converter, GoodConversionToLinuxEndianess) {
 	close(fd);
 
 	bool res = endianess_converter(src_data,dst_data,src_count) ;
-	EXPECT_EQ(res,true);
+	ASSERT_EQ(res,true);
 
 	for (size_t i = 0; i < src_count; ++i) {
 		EXPECT_EQ(exp_data[i],dst_data[i]);

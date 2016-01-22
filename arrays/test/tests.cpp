@@ -31,7 +31,7 @@ TEST (array_copy, ZeroCount) {
 TEST (array_copy, GoodCopy) {
 	int src[5] = {1,2,3,4,5};
 	int dst[5] = {0};
-	EXPECT_EQ(true,array_copy(src,dst,sizeof(int),5));
+	ASSERT_EQ(true,array_copy(src,dst,sizeof(int),5));
 	
 	size_t i = 0;
 	for ( ; i < 5; ++i) {
@@ -158,7 +158,7 @@ TEST (array_serialize, TrickyBadFileNameNewline) {
 TEST (array_serialize, GoodFileName) {
 	const char* src_file = "actual_file.txt";
 	int data[5] = {1,2,3,4,5};
-	EXPECT_EQ(true,array_serialize(data,src_file,sizeof(int),5));
+	ASSERT_EQ(true,array_serialize(data,src_file,sizeof(int),5));
 	
 	size_t numberOfBytesToRead = sizeof(int) * 5;
 	FILE* fp = fopen(src_file, "r");
@@ -166,8 +166,8 @@ TEST (array_serialize, GoodFileName) {
 		printf("FAILURE TO OPEN FILE\n");
 	}
 	char* res = new char[numberOfBytesToRead];
-	EXPECT_EQ(fread(res,1,numberOfBytesToRead,fp), numberOfBytesToRead);
-	EXPECT_EQ(0,memcmp(res,(char*)data,numberOfBytesToRead));
+	ASSERT_EQ(fread(res,1,numberOfBytesToRead,fp), numberOfBytesToRead);
+	ASSERT_EQ(0,memcmp(res,(char*)data,numberOfBytesToRead));
 	fclose(fp);
 	delete[] res;
 }
@@ -214,9 +214,9 @@ TEST (array_deserialize, GoodFileName) {
 	const char* src_file = "actual_file.txt";
 	int data[5] = {0};
 	const int expected[5] = {1,2,3,4,5};
-	EXPECT_EQ(true,array_deserialize(src_file,data,sizeof(int),5));	
+	ASSERT_EQ(true,array_deserialize(src_file,data,sizeof(int),5));	
 	size_t numberOfBytesToRead = sizeof(int) * 5;
-	EXPECT_EQ(0,memcmp(expected,data,numberOfBytesToRead));
+	ASSERT_EQ(0,memcmp(expected,data,numberOfBytesToRead));
 }
 
 
