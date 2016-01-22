@@ -27,7 +27,7 @@ int string_length(const char *str, const size_t length) {
 }
 
 int string_tokenize(const char *str, const char *delims, const size_t str_length,char **tokens, const size_t max_token_length, const size_t requested_tokens) {
-d
+
 	return 0;
 }
 
