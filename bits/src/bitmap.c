@@ -6,8 +6,7 @@
 // byte_count the total number of bytes the data contains, set in bitmap_create 
 struct bitmap {
 	uint8_t *data;
-	size_t bit_count, 
-	byte_count;
+	size_t bit_count, byte_count;
 };
 
 bitmap_t *bitmap_create(size_t n_bits) {
