@@ -82,7 +82,7 @@ bool bitmap_test(const bitmap_t *const bitmap, const size_t bit) {
 size_t bitmap_ffs(const bitmap_t *const bitmap) {
 	// Start at the end of the array "front of the bit string" and check from left to right "high bit to low bit" for the first 1 
 	if (!bitmap) return SIZE_MAX;
-	size_t i,j;
+	/*size_t i,j;
 	for (i=bitmap->byte_count+1;i>=1;i--) {
 		// Start from the left side, and iterate right until you hit the 0th index
 		// Check at each index if that bit is a 1
@@ -92,6 +92,11 @@ size_t bitmap_ffs(const bitmap_t *const bitmap) {
 				return ((i-1)*8)-(j-7);
 			} 
 		}
+	}*/
+	int i;
+	size_t total_bits = bitmap->bit_count;
+	for (i=total_bits-1;i>=0;i--) {
+		if (bitmap_test(bitmap, i)) return (size_t)i;
 	}
 
 	return SIZE_MAX;
