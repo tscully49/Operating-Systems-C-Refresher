@@ -38,7 +38,7 @@
  	size_t test_bit_count = 371;
  	bitmap_A = bitmap_create(test_bit_count);
 	ASSERT_NE(bitmap_A,(bitmap_t*)NULL);
- 	ASSERT_EQ(ceil(test_bit_count/8), bitmap_A->byte_count);
+ 	ASSERT_EQ(ceil(test_bit_count/8.0), bitmap_A->byte_count);
  	if (bitmap_A) {
 	  bitmap_destroy(bitmap_A);
 	}
