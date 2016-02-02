@@ -22,7 +22,7 @@ bool string_equal(const char *str_a, const char *str_b, const size_t length);
 // Finds the number of characters in the string, not including the null terminator
 // \param str the string to count the number of characters in the string
 // \param length the max possible string length for the application
-// \return the length of the string or 0 for invalid string 
+// \return the length of the string or -1 for invalid string 
 int string_length(const char *str, const size_t length);
 
 // Split the incoming string to tokens that are stored in a passed allocated tokens string array

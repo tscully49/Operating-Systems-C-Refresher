@@ -161,7 +161,7 @@ TEST (array_serialize, GoodFileName) {
 	ASSERT_EQ(true,array_serialize(data,src_file,sizeof(int),5));
 	
 	size_t numberOfBytesToRead = sizeof(int) * 5;
-	FILE* fp = fopen(src_file, "r");
+	FILE* fp = fopen(src_file, "rb");
 	if (!fp) {
 		printf("FAILURE TO OPEN FILE\n");
 	}

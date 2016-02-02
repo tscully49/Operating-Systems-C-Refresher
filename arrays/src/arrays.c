@@ -35,11 +35,10 @@ ssize_t array_locate(const void *data, const void *target, const size_t elem_siz
 	}
 
 	int i;
-	const char *new_data;
-	memcpy(&new_data, &data, elem_size * elem_count);
+	const char *new_data = (char *)data;
 
 	for (i=0;i<elem_count;i++) {
-		if (memcmp(new_data[i * elem_size], target, elem_size) == 0) {
+		if (memcmp((new_data + (i*elem_size)), target, elem_size) == 0) {
 			return i;
 		}
 	}
@@ -52,11 +51,14 @@ bool array_serialize(const void *src_data, const char *dst_file, const size_t el
 		return false;
 	}
 
-	FILE *fp = fopen(dst_file , "w");
-	if (fwrite(src_data, elem_size, elem_count, fp) != 0) {
+	if (strcmp(dst_file, "") == 0 || strcmp(dst_file, "\n") == 0) return false;
+
+	FILE *fp;
+	if ((fp = fopen(dst_file , "wb")) != NULL) {
+		if (fwrite((const char *)src_data, 1, (elem_count*elem_size), fp) != elem_size*elem_count) return false;
+		fclose(fp);
 		return true;
 	}
-	fclose(fp);
 
 	return false;
 }
@@ -66,8 +68,13 @@ bool array_deserialize(const char *src_file, void *dst_data, const size_t elem_s
 		return false;
 	}
 
-	FILE *fp = fopen(src_file , "r");
-	if (fread(dst_data, elem_size, elem_count, fp) != 0) {
+	FILE *fp;
+	if ((fp = fopen(src_file , "rb")) == NULL)
+		return false;
+
+	if (strcmp(src_file, "") != 0 && strcmp(src_file, "\n") != 0) {
+		fread(dst_data, elem_size, elem_count, fp);
+		char *dst_data = dst_data;
 		return true;
 	}
 	fclose(fp);
