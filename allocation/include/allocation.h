@@ -3,6 +3,7 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 // Calloc
 // - Initializes memory to 0 (Slower than malloc on some operating systems).
 // - Checks for integer overflow as the size of the space is calculated internally.
