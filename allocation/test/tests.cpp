@@ -45,14 +45,14 @@ TEST(reallocate, ZeroBytes) {
 	ASSERT_NE((char*)NULL, allocated);
 	char* reallocated = (char*) reallocate_array(allocated,0);
 	EXPECT_EQ((char*)NULL,reallocated);
-	free(reallocated);
+	free(allocated);
 }
 TEST(reallocate, NegativeBytes) { 
 	char* allocated = (char*) allocate_array(sizeof(char), BUFSIZ,1);
 	ASSERT_NE((char*)NULL, allocated);
 	char* reallocated = (char*)reallocate_array(allocated,-1);
 	EXPECT_EQ((char*)NULL,reallocated);
-	free(reallocated);
+	free(allocated);
 }
 TEST(reallocate, PositiveBytes) { 
 	char* allocated = (char*) allocate_array(sizeof(char), BUFSIZ,1);

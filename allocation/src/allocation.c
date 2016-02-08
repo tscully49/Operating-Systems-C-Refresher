@@ -12,7 +12,7 @@ void* reallocate_array(void* ptr, size_t size)
 
 void deallocate_array(void** ptr)
 {
-
+	return;
 }
 
 char* read_line_to_buffer(char* filename)

@@ -50,6 +50,7 @@ TEST (string_duplicate, ValidStringDuplicate) {
 	if (res) {
 	  ASSERT_EQ(0, memcmp(string,res, 5 * sizeof(char)));
 	}
+	free(res);
 }
 
 
