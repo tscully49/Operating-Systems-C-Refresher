@@ -16,7 +16,7 @@ void* allocate_array(size_t member_size, size_t nmember,bool clear)
 
 void* reallocate_array(void* ptr, size_t size)
 {
-	if (!ptr) return NULL;
+	if (!ptr || size < 1 || size == SIZE_MAX) return NULL; // IS THIS HOW I TEST IF SIZE_T IS NEGATIVE?!?!?!?!?!?
 	if (size == SIZE_MAX) free(ptr);
 	void *pointer = realloc(ptr, size);
 	if (pointer == NULL) return NULL;
@@ -29,6 +29,7 @@ void deallocate_array(void** ptr)
 	if (!ptr) return;
 	free(*ptr);
 	*ptr = NULL;
+	return;
 }
 
 char* read_line_to_buffer(char* filename)
