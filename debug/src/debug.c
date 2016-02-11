@@ -17,16 +17,7 @@ bool terrible_sort(uint16_t *data_array, const size_t value_count) {
         sorting_array[i] = data_array[i];
     }
 
-    for (int i = 0; i < value_count; ++i) {
-         printf("\n%d\n", *(sorting_array+i));
-    }
-
     qsort(sorting_array, value_count, sizeof(uint16_t), comparator_func);
-    puts("");
-
-    for (int i = 0; i < value_count; ++i) {
-         printf("\n%d\n", *(sorting_array+i));
-    }
 
     bool sorted = true;
     for (int i = 0; i < value_count-1; ++i) {
@@ -35,12 +26,6 @@ bool terrible_sort(uint16_t *data_array, const size_t value_count) {
 
     if (sorted) {
         memcpy(data_array,sorting_array, value_count*sizeof(uint16_t));
-    }
-
-
-
-    for (int i = 0; i < value_count; ++i) {
-         printf("\n%d\n", *(data_array+i));
     }
 
     return sorted;
