@@ -24,7 +24,7 @@ bitmap_t *bitmap_create(size_t n_bits) {
 			pointer->data = (uint8_t *)malloc(sizeof(uint8_t) * bytes);
 			end = bytes;
 		} else {
-			bytes = (n_bits/8);//+1;
+			bytes = ((n_bits/8)+1);//+1;
 			pointer->data = (uint8_t *)malloc(sizeof(uint8_t) * (bytes+1));
 			end = bytes+1;
 		}
