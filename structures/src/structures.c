@@ -3,8 +3,8 @@
 
 int compare_structs(sample_t* a, sample_t* b)
 {
-	if (a->a == b->a && a->b == b->b && a->c == b->c) return 1;
-	return 0;
+	if (a->a == b->a && a->b == b->b && a->c == b->c) return 1; // return 1 if all parts of the data structure are equal
+	return 0; // return 0 otherwise
 }
 
 void print_alignments()
@@ -20,48 +20,48 @@ void print_alignments()
 
 int sort_fruit(const fruit_t* a,int* apples,int* oranges, const size_t size)
 {
-	if (!a || apples < 0 || oranges < 0 || size < 1) return -1;
+	if (!a || apples < 0 || oranges < 0 || size < 1) return -1; // error check params
 	int i;
-	for (i=0;i<size;++i) {
-		if (a[i].type == 1) {
-			*apples = *apples + 1;
-		} else if (a[i].type == 2) {
-			*oranges = *oranges + 1;
+	for (i=0;i<size;++i) { // loop through the fruits array
+		if (a[i].type == 1) { // check if the type is an apple
+			*apples = *apples + 1; // increment apples
+		} else if (a[i].type == 2) { // if it is an orange
+			*oranges = *oranges + 1; // increment oranges
 		}
 	}
-	return i;
+	return i; // return the total number of fruits
 }
 
 int initialize_array(fruit_t* a, int apples, int oranges)
 {
-	if (!a || apples < 0 || oranges < 0) return -1;
+	if (!a || apples < 0 || oranges < 0) return -1; // error check parameters
 	int i,j,k=0;
-	for (i=0;i<apples;++i) {
-		a[k].type = 1;
-		k++;
+	for (i=0;i<apples;++i) { // add all apples to fruits array
+		a[k].type = 1; // type 1 == apple
+		k++; // increment total number of fruits
 	}
-	for (j=0;j<oranges;++j) {
-		a[k].type = 2;
-		k++;
+	for (j=0;j<oranges;++j) { // add all oranges to fruits array
+		a[k].type = 2; // type 2 == orange
+		k++; // increment number of fruits
 	}
-	return 0;
+	return 0; // return 0
 }
 
 int initialize_orange(orange_t* a)
 {	
-	if (!a) return -1;
-	a->type = 2;
-	a->weight = 43;
-	a->peeled = 1;
+	if (!a) return -1; // error check
+	a->type = 2; // type 2 == orange
+	a->weight = 43; // random value
+	a->peeled = 1; // random value
 	return 0;
 }
 
 int initialize_apple(apple_t* a)
 {	
-	if (!a) return -1;
-	a->type = 1;
-	a->weight = 5;
-	a->worms = 4;
+	if (!a) return -1; // error check
+	a->type = 1; // type 1 == apple
+	a->weight = 5; // random value
+	a->worms = 4; // random value
 	return 0;
 }
 
